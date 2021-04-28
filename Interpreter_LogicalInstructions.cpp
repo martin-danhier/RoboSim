@@ -16,17 +16,41 @@
 
 void Interpreter::op_and(unsigned flags, const uint16_t *params)
 {
-	std::cout << "ignored and" << std::endl;
+	// Params:
+	// 0: Destination, memory location
+	// 1: A, memory location
+	// 2: B, memory location
+
+	int a = memory->getScalarValue(params[1]);
+	int b = memory->getScalarValue(params[2]);
+
+	memory->setScalarValue(params[0], a & b);
 }
 
 void Interpreter::op_or(unsigned flags, const uint16_t *params)
 {
-	std::cout << "ignored or" << std::endl;
+	// Params:
+	// 0: Destination, memory location
+	// 1: A, memory location
+	// 2: B, memory location
+
+	int a = memory->getScalarValue(params[1]);
+	int b = memory->getScalarValue(params[2]);
+
+	memory->setScalarValue(params[0], a | b);
 }
 
 void Interpreter::op_xor(unsigned flags, const uint16_t *params)
 {
-	std::cout << "ignored xor" << std::endl;
+	// Params:
+	// 0: Destination, memory location
+	// 1: A, memory location
+	// 2: B, memory location
+
+	int a = memory->getScalarValue(params[1]);
+	int b = memory->getScalarValue(params[2]);
+
+	memory->setScalarValue(params[0], a ^ b);
 }
 
 void Interpreter::op_not(unsigned flags, const uint16_t *params)

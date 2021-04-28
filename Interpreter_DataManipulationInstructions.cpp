@@ -30,7 +30,21 @@ void Interpreter::op_index(unsigned flags, const uint16_t *params)
 
 void Interpreter::op_replace(unsigned flags, const uint16_t *params)
 {
-	std::cout << "ignored replace" << std::endl;
+	// Store replace array element
+	// Params:
+	// 0: Destination, array, memory location
+	// 1: Source, array, memory location
+	// 2: Index, scalar, memory location or NOT_DS_ID (then it defaults to 0)
+	// 3: New value, scalar, memory location
+
+	
+	unsigned index = 0;
+	if (params[2] != 0xFFFF) index = memory->getScalarValue(params[2]);
+
+	int newValue = memory->getScalarValue(params[3]);
+
+	memory->setArrayElement(params[0], index, newValue);
+	
 }
 
 void Interpreter::op_arrsize(unsigned flags, const uint16_t *params)
@@ -69,12 +83,16 @@ void Interpreter::op_arrinit(unsigned flags, const uint16_t *params)
 	// 0: Destination array, memory location
 	// 1: New value, memory location
 	// 2: Count, memory location
-	
-	int32_t newVal = memory->getScalarValue(params[1]);
+
 	unsigned count = 0;
-	if (params[2] != 0xFFFF) count = memory->getScalarValue(params[2]);
+
+	if (params[2] != 0xFFFF)
+		count = memory->getScalarValue(params[2]);
+
+	int32_t newVal = memory->getScalarValue(params[1]);
 	
 	memory->setArrayLength(params[0], count);
+
 	for (unsigned i = 0; i < count; i++)
 		memory->setArrayElement(params[0], i, newVal);
 }

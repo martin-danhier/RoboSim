@@ -61,9 +61,14 @@ void Interpreter::op_stop(unsigned flags, const uint16_t *params)
 	throw std::runtime_error("op_stop");
 }
 
-void Interpreter::op_finclump(unsigned flags, const uint16_t *params)
+bool Interpreter::op_finclump(unsigned flags, const uint16_t *params)
 {
+	if (params[0] == 0xFFFF) {
+		std::cout << "op_exit" << std::endl;
+		return true;
+	}
 	std::cout << "ignored finclump" << std::endl;
+	return false;
 }
 
 void Interpreter::op_finclumpimmed(unsigned flags, const uint16_t *params)

@@ -76,12 +76,12 @@ const char *Interpreter::nameForOpcode(unsigned opcode)
 	}
 }
 
-void Interpreter::step()
+bool Interpreter::step()
 {
-	if (instruction >= file->getCodeWordCount()) return;
+	if (instruction >= file->getCodeWordCount()) return false;
 	
 	if (system->getTick() < waitUntil)
-		return;
+		return false;
 	
 	const uint16_t *code = file->getCode();
 	
@@ -170,7 +170,9 @@ void Interpreter::step()
 			case 0x26: op_brcmp(flags, params); break;
 			case 0x27: op_brtst(flags, params); break;
 			case 0x29: op_stop(flags, params); break;
-			case 0x2A: op_finclump(flags, params); break;
+			case 0x2A:
+				// Exit
+				return op_finclump(flags, params);
 			case 0x2B: op_finclumpimmed(flags, params); break;
 			case 0x2C: op_acquire(flags, params); break;
 			case 0x2D: op_release(flags, params); break;
@@ -191,6 +193,8 @@ void Interpreter::step()
 					throw std::invalid_argument(opcodeString);	
 				}
 		}
+
 	}
+	return false;
 
 }

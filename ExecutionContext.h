@@ -55,7 +55,7 @@ public:
 	 * returns immediately.
 	 * @param mintime The time to execute for.
 	 */
-	void runForTime(float mintime);
+	bool runForTime(float mintime);
 	
 	/*!
 	 * @abstract Sets the interface necessary for communicating with the outside

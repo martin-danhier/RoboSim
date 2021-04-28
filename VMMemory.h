@@ -9,6 +9,7 @@
 
 #include <stdexcept>
 #include <stdint.h>
+#include <vector>
 
 #include "RXEFile.h"
 
@@ -28,11 +29,11 @@ class VMMemory
 {
 	// Global data.
 	const RXEFile *programData;
-	
+
 	// Stores the global scalars (which includes the dope vector numbers for
 	// arrays, but not the arrays themselves)
 	uint8_t *memory;
-	
+
 	// Meta-data for vectors, called Dope Vector by the Lego documentation for
 	// some reason. In that documentation, a Dope Vector is an entry here, while
 	// the entire array is the Dope Vector Array. Notice that this is a vector
@@ -55,19 +56,19 @@ class VMMemory
 #pragma pack (pop)
 #endif
 	DopeVector *dopeVectors;
-	
+
 	// This actually contains the data.
 	char **arrays;
-	
+
 	// Primitive methods to access any value, casting from/to the internal type.
 	int32_t getScalar(RXEFile::dstocType type, const void *memoryLocation) const throw (std::invalid_argument);
 	void setScalar(RXEFile::dstocType type, void *memoryLocation, int32_t newValue) throw (std::invalid_argument);
-	
+
 public:
 	/*!
 	 * @methodgroup Creating and destroying
 	 */
-	
+
 	/*!
 	 * @abstract Constructs a memory object
 	 * @param file The RXE file to base this memory on. The file is used for the
@@ -76,12 +77,12 @@ public:
 	 * of the file, you have to delete it yourself after destroying the memory.
 	 */
 	VMMemory(const RXEFile *file);
-	
+
 	/*!
 	 * @abstract Destructor
 	 */
 	~VMMemory();
-	
+
 	/*!
 	 * @methodgroup Scalar value manipulation
 	 */
@@ -95,9 +96,9 @@ public:
 	 * @result The memory item’s value.
 	 * @throws std::invalid_argument if the type of the entry is one that cannot
 	 * be read, that is cluster or void.
-	 */	
+	 */
 	int32_t getScalarValue(unsigned entry) const throw(std::range_error, std::invalid_argument);
-	
+
 	/*!
 	 * @abstract Sets a new value for a memory location
 	 * @discussion This method is used for global scalars, as opposed to array
@@ -110,17 +111,17 @@ public:
 	 * be written, that is array, cluster or void.
 	 */
 	void setScalarValue(unsigned entry, int32_t newValue) throw(std::range_error, std::invalid_argument);
-	
+
 	/*!
 	 * @methodgroup Array manipulation
 	 */
 	/*!
-	 * @abstract Returns the current length of an array. 
+	 * @abstract Returns the current length of an array.
 	 * @param dstocEntry The array identifier. NOT the Dope Vector, but the value
 	 * passed as an argument to opcodes.
 	 */
 	unsigned getArrayLength(unsigned dstocEntry) const;
-	
+
 	/*!
 	 * @abstract Sets the length of an array.
 	 * @discussion Uses the same semantics as realloc: Truncates if newLength is
@@ -130,7 +131,7 @@ public:
 	 * @param newLength The new length for the array (not bytes, elements).
 	 */
 	void setArrayLength(unsigned dstocEntry, unsigned newLength);
-	
+
 	/*!
 	 * @abstract Returns an array element.
 	 * @discussion Do not use this for complex arrays, i.e. arrays of clumps or
@@ -141,7 +142,7 @@ public:
 	 * @result Whatever is stored at that entry, converted to an int32_t.
 	 */
 	int32_t getArrayElement(unsigned dstocEntry, unsigned offset);
-	
+
 	/*!
 	 * @abstract Sets the value of an array element.
 	 * @discussion Do not use this for complex arrays, i.e. arrays of clumps or
@@ -153,7 +154,7 @@ public:
 	 * automatically.
 	 */
 	void setArrayElement(unsigned dstocEntry, unsigned offset, int32_t newValue);
-	
+
 	/*!
 	 * @abstract Returns the direct array data for an array
 	 * @discussion This returns a pointer to internal data. You can edit it, but
@@ -163,4 +164,30 @@ public:
 	 * @result The data of the array.
 	 */
 	void *getArrayData(unsigned dstocEntry);
+
+	/*!
+	* @abstract Gets the size of a single element of the array
+	* @param dstocEntry The array identifier. NOT the Dope Vector, but the value
+	* passed as an argument to opcodes.
+	* @result the size of an element
+	*/
+	unsigned getArrayElementSize(unsigned dstocEntry);
+
+	/*!
+	* @abstract Checks if the given entry is an array
+	* @param dstocEntry The array identifier. NOT the Dope Vector, but the value
+	* passed as an argument to opcodes.
+	* @result true if it is an array
+	*/
+	bool isArray(unsigned dstocEntry);
+
+	/*!
+	* @abstract Clones the given array into a vector
+	* @param dstocEntry The array identifier. NOT the Dope Vector, but the value
+	* passed as an argument to opcodes.
+	* @discussion Only works for 1D arrays of elements of length 4 (ex: sdword[])
+	* @result the vector containing the values of the array
+	*/
+	std::vector<int32_t> VMMemory::cloneArray(unsigned dstocEntry);
+
 };

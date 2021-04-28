@@ -782,12 +782,20 @@ void Controller::update(float delta)
 		timeSinceStartedScroll += delta;
 		updateTurnSpeed();
 	}
+
 	
-	if (executionContext) executionContext->runForTime(delta * robotCPUTimeFraction);
+	if (executionContext){ 
+		bool shouldQuit = executionContext->runForTime(delta * robotCPUTimeFraction);
+		if (shouldQuit) {
+			executionContext = NULL;
+		}
+	}
+
 	drawer->updateCamera(delta);
 	simulation->update(delta);
 	soundController->update();
 	networkInterface->update();
+
 }
 
 void Controller::draw()

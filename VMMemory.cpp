@@ -8,8 +8,9 @@
  */
 
 #include "VMMemory.h"
-
+#include <iostream>
 #include <cstring>
+
 
 #include "ByteOrder.h"
 #include "RXEFile.h"
@@ -83,7 +84,7 @@ void VMMemory::setScalar(RXEFile::dstocType type, void *memoryLocation, int32_t 
 			// We do NOT like clusters and voids. We also do not allow writing to
 			// the dstoc entry for an array. That just causes all sorts of
 			// trouble.
-		default: throw std::invalid_argument("Invalid DSTOC type used for get");
+		default: throw std::invalid_argument("Invalid DSTOC type used for set");
 	}
 	
 }
@@ -219,7 +220,7 @@ void VMMemory::setArrayElement(unsigned dstocEntry, unsigned arrayIndex, int32_t
 	// Get element type (which is the DSTOC field right after the one for the
 	// array)
 	RXEFile::dstocType elementType = programData->getTypeAtDSTOCIndex(dstocEntry + 1);
-	
+
 	// Get dope vector
 	int32_t dopeVector = getScalarValue(dstocEntry);
 	if (arrayIndex >= SwapU16LittleToHost(dopeVectors[dopeVector].elementCount)) throw std::range_error("Array element not in range");
@@ -228,11 +229,13 @@ void VMMemory::setArrayElement(unsigned dstocEntry, unsigned arrayIndex, int32_t
 	unsigned size = SwapU16LittleToHost(dopeVectors[dopeVector].elementSize);
 	
 	// Set element
+	
 	setScalar(elementType, &(arrays[dopeVector][size*arrayIndex]), newValue);
 }
 
 unsigned VMMemory::getArrayLength(unsigned dstocEntry) const
 {
+
 	if (dstocEntry >= programData->getDSTOCCount()) throw std::range_error("Not a DSTOC entry");
 	
 	return SwapU16LittleToHost(dopeVectors[getScalarValue(dstocEntry)].elementCount);
@@ -260,3 +263,44 @@ void *VMMemory::getArrayData(unsigned dstocEntry)
 	
 	return arrays[dopeVector];
 }
+
+unsigned VMMemory::getArrayElementSize(unsigned dstocEntry) {
+	if (dstocEntry >= programData->getDSTOCCount()) throw std::range_error("Not a DSTOC entry");
+
+	// Get dope vector
+	int32_t dopeVector = getScalarValue(dstocEntry);
+
+	// Get size of an element.
+	return SwapU16LittleToHost(dopeVectors[dopeVector].elementSize);
+}
+
+bool VMMemory::isArray(unsigned dstocEntry)
+{
+	if (dstocEntry >= programData->getDSTOCCount()) throw std::range_error("Not a DSTOC entry");
+
+	// Check the type
+	auto type = programData->getTypeAtDSTOCIndex(dstocEntry);
+	return type == RXEFile::dstocType::TC_ARRAY;
+}
+
+std::vector<int32_t> VMMemory::cloneArray(unsigned dstocEntry) {
+	if (dstocEntry >= programData->getDSTOCCount()) throw std::range_error("Not a DSTOC entry");
+
+	// Get infos about the value array
+	unsigned elemSize = getArrayElementSize(dstocEntry);
+	unsigned length = getArrayLength(dstocEntry);
+	
+	// 4 byte long
+	if (elemSize == 4) {
+		std::vector<int32_t> values(length);
+		for (int i = 0; i < length; i++) {
+			values[i] = getArrayElement(dstocEntry, i);
+		}
+		return values;
+	}
+	// Ignore others
+	else {
+		throw std::runtime_error("ignored cloning of array with elements of size other than 4");
+	}
+}
+

@@ -87,7 +87,7 @@ class Interpreter
 	void op_brcmp(unsigned flags, const uint16_t *params);
 	void op_brtst(unsigned flags, const uint16_t *params);
 	void op_stop(unsigned flags, const uint16_t *params);
-	void op_finclump(unsigned flags, const uint16_t *params);
+	bool op_finclump(unsigned flags, const uint16_t *params);
 	void op_finclumpimmed(unsigned flags, const uint16_t *params);
 	void op_acquire(unsigned flags, const uint16_t *params);
 	void op_release(unsigned flags, const uint16_t *params);
@@ -120,7 +120,7 @@ public:
 	/*!
 	 * @abstract Executes a single operation.
 	 */
-	void step();
+	bool step();
 	
 	/*!
 	 * @abstract Debug method: Returns the name for an opcode.

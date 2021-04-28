@@ -70,26 +70,29 @@ void ExecutionContext::reload()
 	if (networkInterface) system->setNetworkInterface(networkInterface);
 }
 
-void ExecutionContext::runForTime(float mintime)
+bool ExecutionContext::runForTime(float mintime)
 {
-	if (isPaused) return;
+	if (isPaused) return false;
 	
 	unsigned long start = millisecondsSinceStart();
 	
 	if (interpreter->waitingUntilTick() > start)
-		return;
+		return false;
 	
-	while ((float(millisecondsSinceStart()-start)/1000.0f) < mintime)
+	bool shouldQuit;
+	while ((float(millisecondsSinceStart() - start) / 1000.0f) < mintime)
 	{
 		try
 		{
-			interpreter->step();
+			shouldQuit = interpreter->step();
 		}
 		catch (std::exception e)
 		{
 			std::cout << "Exception during execution of code: " << e.what() << std::endl;
 		}
+		if (shouldQuit) return true;
 	}
+	return false;
 }
 
 void ExecutionContext::setIsPaused(bool pause) throw()

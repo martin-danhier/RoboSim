@@ -94,10 +94,23 @@ void Interpreter::op_mod(unsigned flags, const uint16_t *params)
 
 void Interpreter::op_sqrt(unsigned flags, const uint16_t *params)
 {
-	std::cout << "ignored sqrt" << std::endl;
+	// Params:
+	// 0: Destination, memory location
+	// 1: A, memory location
+
+	int a = memory->getScalarValue(params[1]);
+
+	if (a < 0) memory->setScalarValue(params[0], 0);
+	else memory->setScalarValue(params[0], sqrt(a));
 }
 
 void Interpreter::op_abs(unsigned flags, const uint16_t *params)
 {
-	std::cout << "ignored abs for now." << std::endl;
+	// Params:
+	// 0: Destination, memory location
+	// 1: A, memory location
+
+	int a = memory->getScalarValue(params[1]);
+
+	memory->setScalarValue(params[0], abs(a));
 }
