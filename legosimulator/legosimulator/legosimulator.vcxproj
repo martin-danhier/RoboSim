@@ -119,22 +119,22 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4800;4996;4800</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32;..\..\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
-      <Command>robocopy $(SolutionDir)\..\Graphics *.mtl $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.obj $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.tga $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Sounds *.wav $(TargetDir)ressources
-robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
-      <Inputs>$(SolutionDir)\..\Graphics *.mtl;$(SolutionDir)\..\Graphics *.obj;$(SolutionDir)\..\Graphics *.tga;$(SolutionDir)\..\Sounds *.wav;$(SolutionDir)\..\WindowsDLLs *.dll;%(Inputs)</Inputs>
+      <Command>robocopy $(SolutionDir)..\Graphics *.mtl $(TargetDir)ressources
+robocopy $(SolutionDir)..\Graphics *.obj $(TargetDir)ressources
+robocopy $(SolutionDir)..\Graphics *.tga $(TargetDir)ressources
+robocopy $(SolutionDir)..\Sounds *.wav $(TargetDir)ressources
+robocopy $(SolutionDir)..\WindowsDLLs *.dll $(TargetDir)</Command>
+      <Inputs>$(SolutionDir)..\Graphics *.mtl;$(SolutionDir)..\Graphics *.obj;$(SolutionDir)..\Graphics *.tga;$(SolutionDir)..\Sounds *.wav;$(SolutionDir)..\WindowsDLLs *.dll;%(Inputs)</Inputs>
       <Outputs>$(TargetDir)ressources;$(TargetDir)SDL.dll;$(TargetDir)*.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
@@ -145,13 +145,13 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win64;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win64;..\..\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -164,7 +164,7 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;I:\Dropbox\Programming\GitHub\RoboSim\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4800;4996;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -172,17 +172,17 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;I:\Dropbox\Programming\GitHub\RoboSim\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32;..\..\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <Command>md $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.mtl $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.obj $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.tga $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Sounds *.wav $(TargetDir)ressources
-robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
-      <Inputs>$(SolutionDir)\..\Graphics *.mtl;$(SolutionDir)\..\Graphics *.obj;$(SolutionDir)\..\Graphics *.tga;$(SolutionDir)\..\Sounds *.wav;$(SolutionDir)\..\WindowsDLLs *.dll;%(Inputs)</Inputs>
+robocopy $(SolutionDir)..\Graphics *.mtl $(TargetDir)ressources
+robocopy $(SolutionDir)..\Graphics *.obj $(TargetDir)ressources
+robocopy $(SolutionDir)..\Graphics *.tga $(TargetDir)ressources
+robocopy $(SolutionDir)..\Sounds *.wav $(TargetDir)ressources
+robocopy $(SolutionDir)..\WindowsDLLs *.dll $(TargetDir)</Command>
+      <Inputs>$(SolutionDir)..\Graphics *.mtl;$(SolutionDir)..\Graphics *.obj;$(SolutionDir)..\Graphics *.tga;$(SolutionDir)..\Sounds *.wav;$(SolutionDir)..\WindowsDLLs *.dll;%(Inputs)</Inputs>
       <Outputs>$(TargetDir)ressources;$(TargetDir)SDL.dll;$(TargetDir)*.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
@@ -195,7 +195,7 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290;4800;4996;</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -203,17 +203,17 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win32;..\..\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;Ws2_32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <CustomBuildStep>
       <Command>md $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.mtl $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.obj $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Graphics *.tga $(TargetDir)ressources
-robocopy $(SolutionDir)\..\Sounds *.wav $(TargetDir)ressources
-robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
-      <Inputs>$(SolutionDir)\..\Graphics *.mtl;$(SolutionDir)\..\Graphics *.obj;$(SolutionDir)\..\Graphics *.tga;$(SolutionDir)\..\Sounds *.wav;$(SolutionDir)\..\WindowsDLLs *.dll;%(Inputs)</Inputs>
+robocopy $(SolutionDir)..\Graphics *.mtl $(TargetDir)ressources
+robocopy $(SolutionDir)..\Graphics *.obj $(TargetDir)ressources
+robocopy $(SolutionDir)..\Graphics *.tga $(TargetDir)ressources
+robocopy $(SolutionDir)..\Sounds *.wav $(TargetDir)ressources
+robocopy $(SolutionDir)..\WindowsDLLs *.dll $(TargetDir)</Command>
+      <Inputs>$(SolutionDir)..\Graphics *.mtl;$(SolutionDir)..\Graphics *.obj;$(SolutionDir)..\Graphics *.tga;$(SolutionDir)..\Sounds *.wav;$(SolutionDir)..\WindowsDLLs *.dll;%(Inputs)</Inputs>
       <Outputs>$(TargetDir)ressources;$(TargetDir)SDL.dll;$(TargetDir)*.dll;%(Outputs)</Outputs>
     </CustomBuildStep>
   </ItemDefinitionGroup>
@@ -226,7 +226,7 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -234,7 +234,7 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win64;..\..\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -247,7 +247,7 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\include;C:\legosimulator\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\include;..\..\SDL-1.2.14\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4290</DisableSpecificWarnings>
     </ClCompile>
     <Link>
@@ -255,7 +255,7 @@ robocopy $(SolutionDir)\..\WindowsDLLs *.dll $(TargetDir)</Command>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\OpenAL 1.1 SDK\libs\Win32;C:\legosimulator\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Program Files (x86)\OpenAL 1.1 SDK\libs\Win64;..\..\SDL-1.2.14\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>OpenGL32.lib;OpenAL32.lib;SDL.lib;SDLmain.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
